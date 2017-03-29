@@ -1,0 +1,27 @@
+{
+  "manifest_version": 2,
+
+  "name": "TwitterAlarm",
+  "description": "This extension shows Tweets",
+  "version": "1.0",
+
+  "background":{
+    "page":"background.html",
+    "persistence": false
+    },
+    "icons": {
+        "256": "unactive.png"
+    },
+
+  "permissions": [
+     "tabs",
+    "notifications",
+    "https://*/*"
+  ],
+  "browser_action": {
+          "default_icon": "unactive.png",
+          "default_title": "Tweets",         // всплывающая подсказка появл при наведении мыши на кнопку
+          "default_popup": "popup.html"     // страница появл во всплывающем окне откр при нажатии на кнопку
+    },
+  "content_security_policy": "img-src 'self' http://*/*; object-src 'self'; script-src 'self'"
+}
