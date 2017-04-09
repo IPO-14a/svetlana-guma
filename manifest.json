@@ -2,13 +2,14 @@
   "manifest_version": 2,
 
   "name": "TwitterAlarm",
-  "description": "This extension shows Tweets",
-  "version": "1.0",
+  "description": "Simple standalone Twitter app",
+  "version": "1.01",
 
   "background":{
-    "page":"background.html",
-    "persistence": false
+    "persistence": false,
+    "scripts" : ["share.js","jquery.min.js","background.js"]
     },
+
     "icons": {
         "256": "unactive.png"
     },
@@ -16,7 +17,8 @@
   "permissions": [
      "tabs",
     "notifications",
-    "https://*/*"
+    "https://*/*",
+    "contextMenus"
   ],
   "browser_action": {
           "default_icon": "unactive.png",
