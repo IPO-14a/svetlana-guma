@@ -1,7 +1,6 @@
 body {
 	width: 300px;
-	background-color: #48b8c1;
-	text-align: center;
+	background-color: #87d4f5;
 }
 
 .newTweet {
@@ -9,4 +8,7 @@ body {
 }
 
 button {
+	margin-top: 8px;
+	position: absolute;
+	right: 5px;
 }

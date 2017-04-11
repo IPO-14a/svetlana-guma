@@ -3,7 +3,7 @@
 
   "name": "TwitterAlarm",
   "description": "Simple standalone Twitter app",
-  "version": "1.01",
+  "version": "1.2",
 
   "background":{
     "persistence": false,
@@ -21,9 +21,9 @@
     "contextMenus"
   ],
   "browser_action": {
-          "default_icon": "unactive.png",
-          "default_title": "Tweets",         // всплывающая подсказка появл при наведении мыши на кнопку
-          "default_popup": "popup.html"     // страница появл во всплывающем окне откр при нажатии на кнопку
+          "default_icon": "logo.png",
+          "default_title": "Tweet",         // всплывающая подсказка
+          "default_popup": "popup.html"
     },
   "content_security_policy": "img-src 'self' http://*/*; object-src 'self'; script-src 'self'"
 }
