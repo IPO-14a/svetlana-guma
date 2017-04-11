@@ -11,7 +11,7 @@
     },
 
     "icons": {
-        "256": "unactive.png"
+        "64": "logo.png"
     },
 
   "permissions": [
