@@ -2,7 +2,7 @@
   "manifest_version": 2,
 
   "name": "TwitterAlarm",
-  "description": "Simple standalone Twitter app",
+  "description": "Simple Twitter app",
   "version": "1.2",
 
   "background":{
