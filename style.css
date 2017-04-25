@@ -1,11 +1,16 @@
 body {
-	width: 300px;
+	width: 400px;
 	height: 115px;
 	background-color: #87d4f5;
 }
 
 .newTweet {
 	line-height: 12px;
+  padding-left: 100;
+}
+
+.logo {
+
 }
 
 button {
