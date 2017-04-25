@@ -13,13 +13,18 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
- var datTweet = " ";
+
+var datTweet = " ";
  
  $(document).ready(function () {
      $('#btnTweet').click(function (e) {
-         datTweet =  $('#tweetText').val();
+         datTweet = $('#tweetText').val();
+         if (datTweet.length > 140) {
+             alert('Tweet should be less than 140 Chars');
+         }
+         else {
              var twtLink = 'http://twitter.com/home?status=' +encodeURIComponent(datTweet);
              window.open(twtLink,'_blank');
-         
+         }
      });
  });
