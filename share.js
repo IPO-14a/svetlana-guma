@@ -14,5 +14,14 @@ function clickHandler(data, tab) {
     case 'image' :
     chrome.windows.create({url : "https://twitter.com/intent/tweet?url=" + encodeURIComponent(data.srcUrl), type : "panel"});
     break;
+    case 'selected text' :
+    chrome.windows.create({ url : "https://twitter.com/intent/tweet?text=" + encodeURIComponent(data.selectionText), type : "panel"} );
+    break;
+    case 'link' :
+    chrome.windows.create({url : "https://twitter.com/intent/tweet?url=" + encodeURIComponent(data.linkUrl), type : "panel"} );
+    break;
+    case 'page' :
+    chrome.windows.create({url : "https://twitter.com/intent/tweet?text=" + encodeURIComponent(tab.title) + "&url=" + (data.pageUrl), type : "panel"});
+    break;
   }
 }
