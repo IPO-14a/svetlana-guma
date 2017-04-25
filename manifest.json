@@ -6,7 +6,7 @@
   "version": "1.3",
   "background":{
     "persistence": false,
-    "scripts" : ["share.js","jquery.min.js","background.js"]
+    "scripts" : ["background.js"]
     },
 
     "icons": {
