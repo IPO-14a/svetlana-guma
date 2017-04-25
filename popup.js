@@ -15,10 +15,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 var datTweet = " ";
- 
  $(document).ready(function () {
      $('#btnTweet').click(function (e) {
-         datTweet = $('#tweetText').val();
+         datTweet = $('#tweetTexttttt').val();
          if (datTweet.length > 140) {
              alert('Tweet should be less than 140 Chars');
          }
