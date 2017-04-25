@@ -1,0 +1,27 @@
+{
+  "manifest_version": 2,
+
+  "name": "TwitterAlarm",
+  "description": "Simple Twitter app",
+  "version": "1.3",
+  "background":{
+    "persistence": false,
+    },
+
+    "icons": {
+        "64": "logo.png"
+    },
+
+  "permissions": [
+     "tabs",
+    "notifications",
+    "https://*/*",
+    "contextMenus"
+  ],
+  "browser_action": {
+          "default_icon": "logo.png",
+          "default_title": "Tweet",         // всплывающая подсказка
+          "default_popup": "popup.html"
+    },
+  "content_security_policy": "img-src 'self' http://*/*; object-src 'self'; script-src 'self'"
+}
