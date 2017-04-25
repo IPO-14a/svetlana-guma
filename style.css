@@ -1,0 +1,11 @@
+body {
+  width: 420px;
+  height: 125px;
+  background-color: #C3C6C9;
+}
+
+.newTweet {
+  line-height: 12px;
+  position: absolute;
+  right: 10px;
+}
