@@ -12,3 +12,14 @@ document.addEventListener('DOMContentLoaded', function () {
         })();
     }
 });
+
+ var datTweet = " ";
+ 
+ $(document).ready(function () {
+     $('#btnTweet').click(function (e) {
+         datTweet =  $('#tweetText').val();
+             var twtLink = 'http://twitter.com/home?status=' +encodeURIComponent(datTweet);
+             window.open(twtLink,'_blank');
+         
+     });
+ });
