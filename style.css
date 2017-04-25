@@ -9,3 +9,45 @@ body {
   position: absolute;
   right: 10px;
 }
+
+#rotateImg {
+  position: absolute;
+  left: 10px;
+  top: 25px;
+}
+
+.logodiv {  
+  width: 110px;
+  height: 150px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom:0;
+  background-color: #55adef;
+}
+
+p {
+  color: #fff;
+  font-size: 14;
+  font-weight: 700;
+}
+
+button {
+  margin-top: 8px;
+  position: absolute;
+  right: 5px;
+  font-weight: 700;
+  color: white;
+  text-decoration: none;
+  padding: .5em 2em calc(.5em + 1px);
+  border-radius: 6px;
+  background: rgb(92, 184, 224);
+  box-shadow: 0 -1px rgb(53,167,110) inset;
+  transition: 0.2s;
+} 
+
+button:hover { background: rgb(111, 199, 237); }
+button:active {
+  background: rgb(111, 199, 237);
+  box-shadow: 0 3px rgb(111, 199, 237) inset;
+}
