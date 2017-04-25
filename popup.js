@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
+
 var datTweet = " ";
  
  $(document).ready(function () {
