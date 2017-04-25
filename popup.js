@@ -13,17 +13,18 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
- var datTweet = " ";
+var datTweet = " ";
  
  $(document).ready(function () {
      $('#btnTweet').click(function (e) {
-         datTweet =  $('#tweetText').val();
-         /*if (datTweet.length > 140) {
+         datTweet=window.prompt("Type Your Tweet Below...Press OK To Review Your Tweet Before Sending It (opens twitter in new window)")
+         //var textToTweet = "Hi I am tweeting from here";
+         if (datTweet.length > 140) {
              alert('Tweet should be less than 140 Chars');
          }
-         else {*/
+         else {
              var twtLink = 'http://twitter.com/home?status=' +encodeURIComponent(datTweet);
              window.open(twtLink,'_blank');
-         //}
+         }
      });
  });
