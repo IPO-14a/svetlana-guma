@@ -1,3 +1,7 @@
+ /*
+ * 
+ * 
+ */
  $(document).ready(function(){jQuery("#rotateImg").rotate({ 
    bind: 
      { 

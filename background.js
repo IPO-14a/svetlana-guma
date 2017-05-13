@@ -1,8 +1,19 @@
+/**
+* Выполнение функции getTweet в фоновом режиме.
+* Интервал обновления - 2000 мс
+**/
 $(function() {
     var currentId;
     var i = 0;
     setInterval(getTweet,2000);
-
+    
+/**
+* Вывод твита в уведомлении браузера.
+* Переменные name, handle, ids, img, msg, image
+* присваиваются путём поиска тегов в новых твитах response.
+* Массив options содержит полученные из переменных данные.
+* chrome.notifications.create() создаёт уведомление
+*/
 function getTweet() {
     $.get("https://twitter.com", function(response) {
     var xx = $(response).find('li.js-stream-item.stream-item')[0];
