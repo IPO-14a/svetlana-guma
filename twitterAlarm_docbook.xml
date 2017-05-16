@@ -1,0 +1,129 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- This document was created with Syntext Serna Free. -->
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "docbookV4.5/docbookx.dtd" []>
+<article>
+  <articleinfo>
+    <title>Twitter Alarm</title>
+    <author>
+      <surname>Гума</surname>
+      <firstname> Светлана</firstname>
+    </author>
+    <copyright>
+      <year>2017</year>
+      <holder>Светлана Гума</holder>
+    </copyright>
+  </articleinfo>
+  <para>Расширение  предназначено для   взаимодействия с  лентой новостей сервиса Twitter без входа на страницу сайта. Необходима авторизация.</para>
+  <para>Расширение разработано для браузера Google Chrome. При разработке использовался язык JavaScript для обеспечения функционала и разметка HTML для обеспечения вывода пользовательского интерфейса.</para>
+  <section>
+    <title>Пример использования 1</title>
+    <para>Функция представляет собой обработчик кнопки &quot;Tweet&quot; и позволяет отправлять в ленту введённое пользователем сообщение от его имени. После нажатия на кнопку открывается новая вкладка браузера, и управление переходит к API Twitter.</para>
+    <programlisting>$(document).ready(function () {
+     $(&apos;#btnTweet&apos;).click(function () {
+         var datTweet = $(&apos;#tweetText&apos;).val();
+         if (datTweet.length &gt; 140) {
+             alert(&apos;Tweet should be less than 140 Chars&apos;);
+         }
+         else {
+             var twtLink = &apos;http://twitter.com/home?status=&apos; +encodeURIComponent(datTweet);
+             window.open(twtLink,&apos;_blank&apos;);
+         }
+     });
+ });</programlisting>
+  </section>
+  <section>
+    <title>Пример использования 2</title>
+    <para>Основной задачей расширения является вывод в браузере уведомлений о новых твитах в ленте. Для этого предназначена функция getTweet, которая какждые 2000 мс проверяет наличие новых твитов и в случае, если новый твит найден, сообщает браузеру о необходимости создания уведомления.</para>
+    <para>Функция получает параметры, такие как имя пользователя, его аватар, текст твита и прикреплённое изображение, и формирует уведомление.</para>
+    <programlisting>function getTweet() {
+    $.get(&quot;https://twitter.com&quot;, function(response) {
+    var xx = $(response).find(&apos;li.js-stream-item.stream-item&apos;)[0];
+    //поиск необходимых атрибутов в разметке twitter
+    var name = $(xx).find(&apos;div&apos;).attr(&apos;data-name&apos;);
+    var handle = $(xx).find(&apos;div&apos;).attr(&apos;data-screen-name&apos;);
+    var ids = $(xx).find(&apos;div&apos;).attr(&apos;data-tweet-id&apos;);
+    var img = $(xx).find(&apos;img&apos;).attr(&apos;src&apos;);
+    var msg = $(xx).find(&apos;p&apos;).text();
+    var image = $(xx).find(&apos;.AdaptiveMedia-photoContainer img&apos;).attr(&apos;src&apos;);
+    console.log(name,image);
+    //назначение опций для вывода
+    if (!!image) {
+        var options = {
+            type: &quot;image&quot;,
+            title: name+&quot; @&quot;+handle,
+            message: msg,
+            iconUrl: img,
+            imageUrl: image
+            }
+    } else if (!image) {
+            var options = {
+            type: &quot;basic&quot;,
+            title: name+&quot; @&quot;+handle,
+            message: msg,
+            iconUrl: img
+        }
+    }
+
+    //вывод уведомления
+    if (!currentId) {
+        currentId = ids;
+        chrome.notifications.create(&quot;&apos;&quot;+i+&quot;&apos;&quot;, options, function(){});
+    } else if (currentId === ids) {
+
+    } else {
+        currentId = ids;
+        chrome.notifications.create(&quot;&apos;&quot;+i+&quot;&apos;&quot;, options ,function(){});
+        i = i+1;
+        }
+})
+} // end of getTweet
+
+})</programlisting>
+  </section>
+  <section>
+    <title>Пример использования 3</title>
+    <para>Также с помощью данного расширения  можно делиться текстом, изображениями и ссылками не заходя на страницу twitter.com. TwitterAlarm добавляет в контекстное меню браузера пункт &quot;Share ... on Twitter&quot;, благодаря чему пользователю упрощается задача поделиться заинтересовавшей информацией с читателями.</para>
+    <para>Файл share.js содержит необходимые инструкции.</para>
+    <programlisting>/**
+ *  Строковый список, называющий элементы страницы,
+ *  которыми можно поделиться в Twitter
+ *  @var string array $contextList
+**/
+var contextsList = [&quot;selected text&quot;,&quot;link&quot;, &quot;image&quot;];
+
+/**
+ *   Добавление пунктов контекстного меню в Chrome.
+ *   chrome.contextMenus.create() создаёт пункты
+ *   контекстного меню, которые отображаются с текстом titlex
+*/
+for (i = 0; i  &lt; contextsList.length; i++) {
+    var context = contextsList[i];
+    var titlex = &quot;Share &quot; + context + &quot; on Twitter&quot;;
+    chrome.contextMenus.create( {title: titlex, contexts:[context], onclick: clickHandler, id: context});
+}
+
+/**
+* Обработка пунктов контекстного меню при нажатии.
+* По data.menuItemId определяется элемент, переданный
+* при нажатии.
+* chrome.windows.create() создаёт новое окно, в котором
+* производится добавление необходимых ссылок на элементы
+*
+* @param string $data Название элемента
+*/
+function clickHandler(data) {
+    //поделиться элементами
+    switch(data.menuItemId) {
+    case &apos;image&apos; :
+    chrome.windows.create({url : &quot;https://twitter.com/intent/tweet?url=&quot; + encodeURIComponent(data.srcUrl), type : &quot;panel&quot;});
+    break;
+    case &apos;selected text&apos; :
+    chrome.windows.create({ url : &quot;https://twitter.com/intent/tweet?text=&quot; + encodeURIComponent(data.selectionText), type : &quot;panel&quot;} );
+    break;
+    case &apos;link&apos; :
+    chrome.windows.create({url : &quot;https://twitter.com/intent/tweet?url=&quot; + encodeURIComponent(data.linkUrl), type : &quot;panel&quot;} );
+    break;
+  }
+}</programlisting>
+  </section>
+</article>
